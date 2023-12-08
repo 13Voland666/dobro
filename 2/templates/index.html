@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+     <head>
+          <title>User Profiles and Orders</title>
+     </head>
+     <body>
+          <h1>User Profiles and Orders</h1>
+
+          <!-- Profiles Section -->
+          <h2>User Profiles</h2>
+          <ul>
+               {% for profile in profiles %}
+               <li>
+                    <form
+                         method="post"
+                         action="{{ url_for('edit_profile', profile_id=profile.C_ID) }}"
+                    >
+                         <label for="name">Name:</label>
+                         <input
+                              type="text"
+                              name="name"
+                              value="{{ profile.C_Name }}"
+                         />
+
+                         <label for="surname">Surname:</label>
+                         <input
+                              type="text"
+                              name="surname"
+                              value="{{ profile.C_Surname }}"
+                         />
+
+                         <label for="email">Email:</label>
+                         <input
+                              type="text"
+                              name="email"
+                              value="{{ profile.C_Email }}"
+                         />
+
+                         <label for="phone">Phone:</label>
+                         <input
+                              type="text"
+                              name="phone"
+                              value="{{ profile.C_Phone }}"
+                         />
+
+                         <label for="balance">Balance:</label>
+                         <input
+                              type="text"
+                              name="balance"
+                              value="{{ profile.C_Balance }}"
+                         />
+
+                         <button type="submit">Save</button>
+                         <a
+                              href="{{ url_for('delete_profile', profile_id=profile.C_ID) }}"
+                              >Delete</a
+                         >
+                    </form>
+               </li>
+               {% endfor %}
+          </ul>
+
+          <!-- Orders Section -->
+          <h2>Orders</h2>
+          <ul>
+               {% for order in orders %}
+               <li>
+                    <form
+                         method="post"
+                         action="{{ url_for('edit_order', hp_id=order.HP_ID, c_id=order.C_ID) }}"
+                    >
+                         <label for="status">Order Status:</label>
+                         <input
+                              type="text"
+                              name="status"
+                              value="{{ order.O_Status }}"
+                         />
+
+                         <label for="date">Order Date:</label>
+                         <input
+                              type="text"
+                              name="date"
+                              value="{{ order.P_Date }}"
+                         />
+
+                         <button type="submit">Save</button>
+                         <!-- Add this within the <form> for orders in your index.html template -->
+                         <a
+                              href="{{ url_for('delete_order', hp_id=order.HP_ID, c_id=order.C_ID) }}"
+                              >Delete</a
+                         >
+                    </form>
+               </li>
+               {% endfor %}
+          </ul>
+     </body>
+</html>
